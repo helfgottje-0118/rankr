@@ -471,7 +471,7 @@ app.get("/readme.html", (req, res) => {
 });
 app.get("/wp-login.php", (req, res) => {
   res.set("Content-Type", "text/html");
-  res.send(`<!DOCTYPE html><html><body><form action="/wp-login.php" method="post" style="font-family:sans-serif;max-width:300px;margin:60px auto"><h2>Log in &mdash; PrimeRoof Miami</h2><p style="color:#777">This real WordPress login has no rate limiting, no Cloudflare, no 2FA.</p><input type="hidden" name="log" value="x"/><label>Username or Email</label><br/><input type="text" name="log" /><br/><br/><label>Password</label><br/><input type="password" name="pwd" /><br/><br/><button>Log In</button><p id="err" style="color:#a8071a"></p></form><script>if(location.search.includes("failed")){document.getElementById("err").textContent="ERROR: Incorrect username or password."}addEventListener("message",()=>{});</script></body></html>`);
+  res.send(`<!DOCTYPE html><html><body><form action="/wp-login.php" method="post" style="font-family:sans-serif;max-width:300px;margin:60px auto"><h2>Log in &mdash; PrimeRoof Miami</h2><p style="color:#777">Synthetic WordPress-style login with intentionally weak demo credentials and no rate limiting or 2FA.</p><label>Username or Email</label><br/><input type="text" name="log" autocomplete="username" required /><br/><br/><label>Password</label><br/><input type="password" name="pwd" autocomplete="current-password" required /><br/><br/><button>Log In</button><p id="err" style="color:#a8071a"></p></form><script>if(location.search.includes("failed")){document.getElementById("err").textContent="ERROR: Incorrect username or password."}addEventListener("message",()=>{});</script></body></html>`);
 });
 app.post("/wp-login.php", (req, res) => {
   const log = String(req.body && req.body.log || "").trim();

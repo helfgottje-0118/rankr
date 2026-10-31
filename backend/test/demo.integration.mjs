@@ -28,6 +28,12 @@ before(async () => {
 
 after(() => server?.kill("SIGKILL"));
 
+test("demo login form submits exactly one username field", async () => {
+  const html = await (await fetch(`${base}/wp-login.php`)).text();
+  assert.equal((html.match(/name="log"/g) || []).length, 1);
+  assert.doesNotMatch(html, /type="hidden" name="log"/);
+});
+
 test("demo login accepts form data and protects admin routes", async () => {
   const login = await fetch(`${base}/wp-login.php`, {
     method: "POST",
